@@ -1,3 +1,3 @@
-RUNNING MAN - An app designed for CSE 170 
+CLEANING WITH FRIENDS - Clean comfortably with your roommates! 
 =======================
-by Chu Jang, Qing Hu, Sarmed Chaudhry
+An app designed for CSE 170 by Chu Jang, Qing Hu, Sarmed Chaudhry
