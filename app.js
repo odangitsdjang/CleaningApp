@@ -8,8 +8,14 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 
+// All the pages for our project!
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
+var group = require('./routes/group');
+var leaderboard = require('./routes/leaderboard');
+var other = require('./routes/other');
+
+
 // Example route
 // var user = require('./routes/user');
 
@@ -38,6 +44,10 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/', index.view);
 app.get('/tasks', tasks.viewTasks);
+app.get('/group', group.viewGroup);
+app.get('/leaderboard', leaderboard.viewLeaderboard);
+app.get('/other', other.viewOther);
+
 // Example route
 // app.get('/users', user.list);
 
