@@ -47,25 +47,25 @@ function initializePage() {
 		newDiv.innerHTML = 
 			'<div class="panel panel-default">' +
 	  			'<div class="panel-heading clearfix">' + 
-	    			'<h3 class="panel-title pull-left"><span id="displayName"'+count+'"></span></h3>'+
+	    			'<h3 class="panel-title pull-left"><span id="displayName'+count+'"></span></h3>'+
 	      			'<a class="btn btn-primary pull-right" href="#">'+
 	        		'<i class="fa fa-pencil"></i>'+
 	        		'Edit'+
 	      			'</a>'+
 	    		'</div>'+
-	    	'<div class="list-group">'+
-	      		'<div class="list-group-item">'+
-	        	'<p class="list-group-item-text">Reward</p>'+
-	        	'<h4 class="list-group-item-heading"><span id="displayReward"'+count+'"></span></h4>'+
-	      	'</div>'+
-	      	'<div class="list-group-item">'+
-	        '<p class="list-group-item-text"><span id="displayDescription"'+count+'"></p>'+
-	      '</div>'+
-	    '</div>'+
-	  '<div class="panel-footer">'+
-	    '<small></small>'+
-	  '</div>'+
-	'</div>';
+	    		'<div class="list-group">'+
+	      			'<div class="list-group-item">'+
+	        			'<p class="list-group-item-text">Reward</p>'+
+	        			'<h4 class="list-group-item-heading"><span id="displayReward'+count+'"></span></h4>'+
+	      			'</div>'+
+	      			'<div class="list-group-item">'+
+	        			'<p class="list-group-item-text"><span id="displayDescription'+count+'"></p>'+
+	      			'</div>'+
+	    		'</div>'+
+	  			'<div class="panel-footer">'+
+	    			'<small></small>'+
+	  			'</div>'+
+			'</div>';
 
 		var currentDiv = document.getElementById("tasks"); 
   
