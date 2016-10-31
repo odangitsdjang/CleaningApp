@@ -1,8 +1,22 @@
-'use strict';
+// 'use strict'; 
+
+// global
+var data = {
+		"taskCount": 0,
+		"tasks": [
+			{
+				"taskName":"Do the dishes",
+				"taskReward": 1.32,
+				"taskDescription":"Need to do this ASAP"
+			}
+			
+		]
+	}
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 	initializePage();
+
 })
 
 /*
@@ -38,16 +52,17 @@ function initializePage() {
 	    }
 	}
 
-	var count = 0;
+	
 
-	saveTask.onclick = function() {
+	saveTask.onclick = function createDiv() {
 
+		
 		var newDiv = document.createElement("div"); 
 		//newDiv.id = "displayName"+count;
 		newDiv.innerHTML = 
 			'<div class="panel panel-default">' +
 	  			'<div class="panel-heading clearfix">' + 
-	    			'<h3 class="panel-title pull-left"><span id="displayName'+count+'"></span></h3>'+
+	    			'<h3 class="panel-title pull-left"><span id="displayName'+data.taskCount+'"></span></h3>'+
 	      			'<a class="btn btn-primary pull-right" href="#">'+
 	        		'<i class="fa fa-pencil"></i>'+
 	        		'Edit'+
@@ -56,10 +71,10 @@ function initializePage() {
 	    		'<div class="list-group">'+
 	      			'<div class="list-group-item">'+
 	        			'<p class="list-group-item-text">Reward</p>'+
-	        			'<h4 class="list-group-item-heading"><span id="displayReward'+count+'"></span></h4>'+
+	        			'<h4 class="list-group-item-heading"><span id="displayReward'+data.taskCount+'"></span></h4>'+
 	      			'</div>'+
 	      			'<div class="list-group-item">'+
-	        			'<p class="list-group-item-text"><span id="displayDescription'+count+'"></p>'+
+	        			'<p class="list-group-item-text"><span id="displayDescription'+data.taskCount+'"></p>'+
 	      			'</div>'+
 	    		'</div>'+
 	  			'<div class="panel-footer">'+
@@ -72,18 +87,35 @@ function initializePage() {
   		currentDiv.appendChild(newDiv);
 
 
-		document.getElementById('displayName'+count).innerHTML = 
+		var a = document.getElementById('displayName'+data.taskCount).innerHTML = 
 	                    document.getElementById("taskName").value;
 
-	    document.getElementById('displayReward'+count).innerHTML = 
+	    var b =document.getElementById('displayReward'+data.taskCount).innerHTML = 
 	                    document.getElementById("taskReward").value;
 
-	    document.getElementById('displayDescription'+count).innerHTML = 
+	    var c = document.getElementById('displayDescription'+data.taskCount).innerHTML = 
 	                    document.getElementById("taskDescription").value;
+	    
 
-	    count++;
+	    // I've tried a lot of json writing under here but it did not work , even simple ones
+
+
+	    data.tasks.push({
+	    	"taskName":a,
+	    	"taskReward":b,
+	    	"taskDescription":c
+	    }); 
+	    data.taskCount++;
+	    writeData();
+	    
 
 	    modal.style.display = "none";
+	    return data;
+	}; 
 
-	}
+		
+
 }
+
+
+
