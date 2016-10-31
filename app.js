@@ -7,6 +7,8 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
+//var jsonfile = require('jsonfile') // to read and write JSON more easily
+//var requirejs = require('requirejs');
 
 // All the pages for our project!
 var index = require('./routes/index');
@@ -36,6 +38,10 @@ app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* global variable dataJson (can be used in other files)
+app.locals.dataJson = require('/data.json'); */
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -54,3 +60,13 @@ app.get('/other', other.viewOther);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+/*
+requirejs.config({
+    //Pass the top-level main.js/index.js require
+    //function to requirejs so that node modules
+    //are loaded relative to the top-level JS file.
+    nodeRequire: require
+});
+*/

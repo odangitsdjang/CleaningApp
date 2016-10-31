@@ -25,9 +25,58 @@
 </head>
 <body>        
         <div class="jumbotron">
-            <h2>Current <a href="/tasks">tasks:</a> 2</h2>
+            <h2>Current <a href="/tasks">tasks:</a> {{ dataJson.taskCount}} </h2>
+
+            {{#each dataJson.tasks}}
+            <div class="tasklist">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title pull-left"><span id=""><h2> {{this.taskName }}</h2></span></h3>
+                        <!-- TODO EDIT LINK-->
+                        <a class="btn btn-primary pull-right" href="#">
+                            <i class="fa fa-pencil"></i>
+                            Edit 
+                        </a>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <p class="list-group-item-text"> </p>
+                            <!-- clean up later...  also hyperlink somewhere else later-->
+                            <h3>Reward:</h3> <h4><a href="/tasks/">${{this.taskReward}}</a></h4>
+                            <h4 class="list-group-item-heading"><span id=""></span></h4>
+                        </div>
+                        <div class="list-group-item">
+                            <h3>Description:</h3> <h4>{{this.taskDescription}}</h4>
+                            <p class="list-group-item-text"><span id=""></span></p>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <small></small>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
         </div>
-    
+   
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/navbar.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+ <!--  old
         <div class="tasklist">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
@@ -53,10 +102,6 @@
                     </div>
                 </div>
 
-            <!-- divs are invisible structuring elements that stack vertically by default. Use them to organize your code -->
-            <!-- img tags are images. Lorem Pixel will deliver random images; handy! -->
-            <!-- a are anchors, also known as hyperlinks. Use the href attribute to tell the browser where to go when the user clicks -->
-            
         </div>
 
         <div class="tasklist">
@@ -83,16 +128,6 @@
                 <small></small>
                     </div>
                 </div>
-
-            <!-- divs are invisible structuring elements that stack vertically by default. Use them to organize your code -->
-            <!-- img tags are images. Lorem Pixel will deliver random images; handy! -->
-            <!-- a are anchors, also known as hyperlinks. Use the href attribute to tell the browser where to go when the user clicks -->
-            
         </div>
-
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/navbar.js"></script>
-
-</body>
+    -->
 </html>
