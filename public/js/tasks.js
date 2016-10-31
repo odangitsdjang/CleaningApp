@@ -106,7 +106,7 @@ function initializePage() {
 	    	"taskDescription":c
 	    }); 
 	    data.taskCount++;
-	    writeData();
+	    // writeData();
 	    
 
 	    modal.style.display = "none";
