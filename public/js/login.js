@@ -18,7 +18,7 @@ $(document).ready(function() {
 function initializePage() {
   var login_btn = document.getElementById('login-btn');
 
-  login_btn.onclick = function (){
-    location.href = "/index";
+  // login_btn.onclick = function (){
+  //   location.href = "/index";
   }
 }
