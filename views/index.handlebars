@@ -23,10 +23,25 @@
     <![endif]-->        
 
 </head>
-<body>        
+<body onload="sumcurrency()">
+    <div class="jumbotron">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">
+                    <span id="">
+                        <h2>User's Currency</h2>
+                    </span>
+                </h3>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h3>Currency <span id=""><h4 id="UserCurrency" style="float:right"></h4></span></h3>
+                </div>
+            </div>
+        </div>
+    </div>        
         <div class="jumbotron">
             <h2>Current <a href="/tasks">tasks:</a> {{ dataJson.taskCount}} </h2>
-
             {{#each dataJson.tasks}}
             <div class="tasklist">
                 <div class="panel panel-default">
@@ -63,6 +78,15 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/navbar.js"></script>
+    <script>
+        function sumcurrency(dataJson) {
+            var sum = 0;
+            {{#each dataJson.tasks}}
+            sum = sum + {{this.taskReward}};
+            {{/each}}
+                document.getElementById("UserCurrency").innerHTML = sum;
+        }
+    </script>
 
 </body>
 
