@@ -11,11 +11,12 @@ document.getElementById("navMenu").innerHTML =
 	    	'</div>'+
 	    	'<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">'+
 				'<ul class="nav navbar-nav">'+
-					'<li><a href="/">Home</a></li>'+
+					'<li><a href="/index/">Home</a></li>'+
 					'<li><a href="/tasks/">Tasks</a></li>'+
 					'<li><a href="/group/">Group</a></li>'+
 					'<li><a href="/leaderboard/">Leaderboard</a></li>'+
 					'<li><a href="/other">Other</a></li>'+
+					'<li><a href="/">Logout</a></li>'+
 				'</ul>'+
 			'</div>'+
 	  	'</div>'+

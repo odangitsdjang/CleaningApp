@@ -6,11 +6,12 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var handlebars = require('express3-handlebars')
+var handlebars = require('express3-handlebars');
 //var jsonfile = require('jsonfile') // to read and write JSON more easily
 //var requirejs = require('requirejs');
 
 // All the pages for our project!
+var login = require('./routes/login');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 var group = require('./routes/group');
@@ -48,7 +49,8 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', index.view);
+app.get('/', login.view);
+app.get('/index', index.viewIndex);
 app.get('/tasks', tasks.viewTasks);
 app.get('/group', group.viewGroup);
 app.get('/leaderboard', leaderboard.viewLeaderboard);
