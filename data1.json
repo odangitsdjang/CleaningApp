@@ -1,0 +1,20 @@
+{
+	"UserCount": 3,
+	"Currency": [
+		{
+			"UserName":"David",
+			"UserCurrency": 6.73,
+			"UserPosition": "1st"
+		},
+		{
+			"UserName":"Sarmed",
+			"UserCurrency": 3.45,
+			"Userposition": "2nd"
+		},
+		{
+			"UserName":"Alex",
+			"UserCurrency": 3.33,
+			"Userposition": "3rd"
+		}
+	]
+}

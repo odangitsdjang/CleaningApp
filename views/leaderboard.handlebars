@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 
 <html>
 <head>
@@ -17,6 +17,35 @@
 
 <body>
 	<h1>LEADERBOARD</h1>
+    <div class="jumbotron">
+        <h2>Current User number: {{dataJson.UserCount}} </h2>
+        {{#each dataJson.Currency}}
+        <div class="tasklist">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title pull-left"><span id=""><h2> {{this.UserName }}</h2></span></h3>
+                    <!-- TODO EDIT LINK-->
+                </div>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <p class="list-group-item-text"> </p>
+                        <!-- clean up later...  also hyperlink somewhere else later-->
+                        <h3>Reward Currency:</h3> <h4>$ {{this.UserCurrency}}</h4>
+                        <h4 class="list-group-item-heading"><span id=""></span></h4>
+                    </div>
+                    <div class="list-group-item">
+                        <h3>Rank position: </h3> <p>{{this.Userposition}}</p>
+                        <p class="list-group-item-text"><span id=""></span></p>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <small></small>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/navbar.js"></script>
