@@ -23,8 +23,9 @@
     <![endif]-->        
 
 </head>
-<body onload="sumcurrency()">
-    <div class="jumbotron">
+<!-- <body onload="sumcurrency()"> -->
+<body>
+    <!-- <div class="jumbotron">
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <h3 class="panel-title pull-left">
@@ -39,16 +40,15 @@
                 </div>
             </div>
         </div>
-    </div>        
-        <div class="jumbotron">
+    </div>   -->      
+        <!-- <div class="jumbotron">
             <h2>Current <a href="/tasks">tasks:</a> {{ dataJson.taskCount}} </h2>
             {{#each dataJson.tasks}}
             <div class="tasklist">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        <h3 class="panel-title pull-left"><span id=""><h2> {{this.taskName }}</h2></span></h3>
-                        <!-- TODO EDIT LINK-->
-                        <a class="btn btn-primary pull-right" href="#">
+                        <h3 class="panel-title pull-left"><span id=""><h2> {{this.taskName }}</h2></span></h3>                
+                        <a class="btn btn-primary pull-right" href="#" id="editTask()">
                             <i class="fa fa-pencil"></i>
                             Edit 
                         </a>
@@ -56,7 +56,6 @@
                     <div class="list-group">
                         <div class="list-group-item">
                             <p class="list-group-item-text"> </p>
-                            <!-- clean up later...  also hyperlink somewhere else later-->
                             <h3>Reward:</h3> <h4><a href="/tasks/">${{this.taskReward}}</a></h4>
                             <h4 class="list-group-item-heading"><span id=""></span></h4>
                         </div>
@@ -65,27 +64,29 @@
                             <p class="list-group-item-text"><span id=""></span></p>
                         </div>
                     </div>
-
                     <div class="panel-footer">
                         <small></small>
                     </div>
                 </div>
             </div>
             {{/each}}
-        </div>
-   
+        </div> -->
+   <div id="myTasks"></div>
+   <div id="userTasks"></div>
+
 
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/js/home.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/navbar.js"></script>
     <script>
-        function sumcurrency(dataJson) {
-            var sum = 0;
-            {{#each dataJson.tasks}}
-            sum = sum + {{this.taskReward}};
-            {{/each}}
-                document.getElementById("UserCurrency").innerHTML = sum;
-        }
+        // function sumcurrency(dataJson) {
+        //     var sum = 0;
+        //     {{#each dataJson.tasks}}
+        //     sum = sum + {{this.taskReward}};
+        //     {{/each}}
+        //         document.getElementById("UserCurrency").innerHTML = sum;
+        // }
     </script>
 
 </body>

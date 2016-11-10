@@ -7,6 +7,7 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
+//var fs = require('fs');
 //var jsonfile = require('jsonfile') // to read and write JSON more easily
 //var requirejs = require('requirejs');
 

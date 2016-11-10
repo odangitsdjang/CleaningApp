@@ -24,9 +24,9 @@ function blah(){
 	}
 
 
-	data.tasks.push({"taskName":"do that", "taskReward":1.23,"taskDescription":"Sooner than later"});
+	data.tasks.push({"taskName":"do that", "taskReward":1.23, "taskDescription":"Sooner than later"});
 	var jsonfile = require('jsonfile')
-	var file = '../../data1.json'
+	var file = '../../data2.json'
 
 
 	jsonfile.writeFile(file,data)

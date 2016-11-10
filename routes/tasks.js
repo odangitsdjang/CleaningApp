@@ -5,7 +5,13 @@ var tasksController = require('../public/js/tasks.js');
 jsonfile.writeFile(file,data1);
 */
 
+var dJ = require('../data1.json');
+
 exports.viewTasks = function(req, res){
-  res.render('tasks');
+  res.render('tasks', {
+  	dataJson: dJ
+  });
 
 };
+
+
