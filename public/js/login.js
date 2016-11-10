@@ -56,7 +56,6 @@ function initializePage() {
     }
     if ( matchName == "" || matchPass == ""){
       alert ("Login Failed");
-      //window.location = "success.html"; // Redirecting to other page.
       return false;
     } 
     else{
