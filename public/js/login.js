@@ -47,6 +47,8 @@ function initializePage() {
     var matchPass = "";
 
     for(var i = 0; i < userCount; i++){
+      console.log(localStorage.getItem("userName"+i));
+      console.log(localStorage.getItem("userPassword"+i));
       if(localStorage.getItem("userName"+i) == username)
         matchName = username;
       if(localStorage.getItem("userPassword"+i) == password)
@@ -65,7 +67,7 @@ function initializePage() {
 
   signUp.onclick = function signUp(){
     var username = document.getElementById("signUpName").value;
-    var password = document.getElementById("signUpEmail").value;
+    var password = document.getElementById("signUpPassword").value;
     var email = document.getElementById("signUpEmail").value;
 
     if (username == "" || password == "" || email == ""){
