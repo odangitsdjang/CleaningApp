@@ -151,7 +151,7 @@ function initializePage() {
 	}
 
 	window.completeTask = function(elem){
-		document.getElementsByClassName('taskhome'+elem.id[4]).style.display = 'none';
+		document.getElementById('taskshome'+elem.id[4]).style.display = 'none';
 	}
 
 }
