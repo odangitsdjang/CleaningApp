@@ -34,11 +34,10 @@
                         <h4 class="list-group-item-heading"><span id=""></span></h4>
                     </div>
                     <div class="list-group-item">
-                        <h3>Rank position: </h3> <p>{{this.Userposition}}</p>
+                        <h3>Rank position: </h3> <p id="index{{@index}}">{{@index}}</p>
                         <p class="list-group-item-text"><span id=""></span></p>
                     </div>
                 </div>
-
                 <div class="panel-footer">
                     <small></small>
                 </div>
@@ -49,6 +48,11 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/navbar.js"></script>
+    <script>
+        //console.log(document.getElementById("index" + String(0)).innerHTML)
+    for(i = 0; i < {{dataJson.Currency.length}};i++)
+        document.getElementById("index" + String(i)).innerHTML = Number(document.getElementById("index" + String(i)).innerHTML) + 1;
+    </script>
 </body>
 
 </html>
