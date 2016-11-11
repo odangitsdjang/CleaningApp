@@ -1,5 +1,6 @@
 var userCount = (localStorage.getItem('userCount')===null)?0:(localStorage.getItem('userCount'));
-var memberCount = 0;
+var memberCount = (localStorage.getItem('memberCount')===null)?0:(localStorage.getItem('memberCount'));
+var totalMembers = (localStorage.getItem('totalMembers')===null)?0:(localStorage.getItem('totalMembers'));
 
 $(document).ready(function() {
 	// window.localStorage.clear();
@@ -13,6 +14,22 @@ function initializePage() {
 	//newDivHead.innerHTML = '<h2>Total # members in the world: '+userCount+'</h2>'+'<div class="jumbotron">';
 	newDivHead.innerHTML = '<h2>Total Group members: '+memberCount+'</h2>'+'<div class="jumbotron">';
 	document.getElementById("myGroup").appendChild(newDivHead);
+
+	for(var i = 0; i < memberCount; i++){
+		if(localStorage.getItem("myGroup"+i) !== null){
+			var newDiv = document.createElement("div");
+			newDiv.innerHTML = '<h2 class=member'+i+'>'+localStorage.getItem("myGroup"+i)+'</h2>'+
+				'<a class="btn btn-primary pull-right removeBtn'+i+'" onclick="removeMember(this)" id="removeBtn'+i+'">'+
+	                            '<i class="fa fa-pencil"></i>'+
+	                            'Remove'+ 
+	                        '</a>';
+			document.getElementById("myGroup").appendChild(newDiv);
+		}
+	}
+
+	// var endDiv = document.createElement("div");
+	// endDiv.innerHTML = "</div>";
+	// document.getElementById("myGroup").appendChild(endDiv);
 
 
 	buttonStuff();
@@ -28,9 +45,14 @@ function addMember2() {
 
 }
 
-function removeMember() {
+function removeMember(elem) {
 
-
+	$(".member"+elem.id[9]).remove();
+	$(".removeBtn"+elem.id[9]).remove();
+	localStorage.removeItem("myGroup"+elem.id[9]);
+	memberCount--;
+	localStorage.setItem('memberCount', memberCount);
+	history.go(0);
 
 
 }
@@ -48,7 +70,6 @@ function buttonStuff() {
 
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("cancelBtn")[0];
-	var editSpan = document.getElementsByClassName("editCancel")[0];
 
 	// When the user clicks on the button, open the modal 
 	btn.onclick = function() {
@@ -60,23 +81,48 @@ function buttonStuff() {
 	    modal.style.display = "none";
 	}
 
-	editSpan.onclick = function() {
-		editModal.style.display = "none";
-	}
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        modal.style.display = "none";
 	    }
-	    else if (event.target == editModal) {
-	    	editModal.style.display = "none";
-	    }
 	}
 
 
 	addMember.onclick = function createDiv() {
+		//check if valid and show error if not
+		//check if user exists
+			//add user to group
+		//else error
+		var matchName = "";
+		var matchEmail = "";
 
-		}
+		var username = document.getElementById("addName").value;
+    	var email = document.getElementById("addEmail").value;
+
+    	for(var i = 0; i < userCount; i++){
+	      console.log(localStorage.getItem("userName"+i));
+	      console.log(localStorage.getItem("userEmail"+i));
+	      if(localStorage.getItem("userName"+i) == username)
+	        matchName = username;
+	      if(localStorage.getItem("userEmail"+i) == email)
+	        matchEmail = email;
+	    }
+	    if ( matchName == "" || matchEmail == ""){
+	      alert ("User or Email invalid or not found");
+	      return false;
+	    } 
+	    else{
+	      //add to div and save
+	      localStorage.setItem("myGroup"+memberCount, username);
+	      memberCount++;
+	      totalMembers++;
+	      localStorage.setItem("memberCount", memberCount);
+	      localStorage.setItem("totalMembers", totalMembers);
+		  history.go(0); //refresh page
+	    }
+
+	}
 
 
 }

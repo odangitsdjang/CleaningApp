@@ -12,7 +12,7 @@ var count = (localStorage.getItem('currTaskCount')===null)?0:(localStorage.getIt
 var editCount = -1;
 
 // Call this function when the page loads (the "ready" event)
-$(document).ready(function() {
+$(document).ready(function() {       
 	// window.localStorage.clear();
 	displayTasks();
 	initializePage();
@@ -40,16 +40,16 @@ function displayTasks(){
 	      			'<div class="list-group-item">'+
 	        			'<p class="list-group-item-text"><span id="displayDescription'+i+'"></p>'+
 	      			'</div>'+
-	      			'<div class="dropdown list-group-item">'+ 
-	      				
+	      			'<div class="list-group-item">'+ 	    
 	        			'<button onclick="selecUser(this)" id="selectUser'+i+'" class="dropbtn">Select User</button>'+
 	        			'<div class="dropdown-content" id="displayUser'+i+'">'+
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">shit</a>'+
-	        			'<a href="#">shiaslkd</a>'+
-	        			'<a href="#">adf</a>'+
+	        			'<div id="userlinks"></div>'+
+	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Sarmed</a>'+
+	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">David</a>'+
+	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Alex</a>'+
 	        			'</div>'+
-	        			'<div id="selectedUser'+i+'" value=""></div>'
-	      			'</div>'+
+	        			'<div id="selectedUser'+i+'" value=""></div>'+
+	      			 '</div>'+
 	    		'</div>'+
 	  			'<div class="panel-footer">'+
 	    			'<small></small>'+
@@ -57,8 +57,21 @@ function displayTasks(){
 			'</div>';
 
 		var currentDiv = document.getElementById("tasks"); 
-  
-  		currentDiv.appendChild(newDiv);
+   		currentDiv.appendChild(newDiv);
+
+  // 		var newDiv2 = document.createElement("div");
+  // 		newDiv2.innerHTML = '';
+
+  // 		for(var j = 0; j < localStorage.getItem("totalMembers");j++){
+  // 			var currMem = localStorage.getItem("myGroup"+j);
+  // 			if(currMem !== null){
+  // 				console.log(currMem);
+  // 				newDiv2.innerHTML += '<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+j+'">'+currMem+'</a>'
+  // 			}
+  // 		}
+  // 		var currDiv = document.getElementById("userlinks");
+  // 		currDiv.appendChild(newDiv2);
+  	
 
 
 		document.getElementById('displayName'+i).innerHTML = localStorage.getItem("taskName"+i);
@@ -147,11 +160,12 @@ function initializePage() {
 	      				
 	        			'<button onclick="selecUser(this)" id="selectUser'+count+'" class="dropbtn">Select User</button>'+
 	        			'<div class="dropdown-content" id="displayUser'+count+'">'+
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+count+'">shit</a>'+
+
+	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+count+'"></a>'+
 	        			'<a href="#">fg</a>'+
 	        			'<a href="#">adf</a>'+
 	        			'</div>'+
-	        			'<div id="selectedUser'+count+'" value=""></div>'
+	        			'<div id="selectedUser'+count+'" value=""></div>'+
 	      			'</div>'+
 	    		'</div>'+
 	  			'<div class="panel-footer">'+
@@ -194,12 +208,10 @@ function initializePage() {
  		editTask = document.getElementById("editTask"+count);
  		//document.getElementById("editTask"+count).onclick = function() {editPressed()};
  		selectUser = document.getElementById("selectUser"+count);
- 		console.log(selectUser);
 
  		count++;
  		localStorage.setItem('currTaskCount', count);
  		
- 		console.log(editTask);
 		//	looping just to see whats in storage
 		 // for(var i = 0; i <= count; i++)
 		 // 	console.log((localStorage.getItem('taskReward'+i)));
@@ -258,9 +270,6 @@ function initializePage() {
 	    }
 	  }
 	}
-
-		
-
 }
 
 

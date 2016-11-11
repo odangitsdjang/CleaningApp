@@ -15,7 +15,6 @@ document.getElementById("navMenu").innerHTML =
 					'<li><a href="/tasks/">Tasks</a></li>'+
 					'<li><a href="/group/">Group</a></li>'+
 					'<li><a href="/leaderboard/">Leaderboard</a></li>'+
-					'<li><a href="/other">Other</a></li>'+
 					'<li><a href="/">Logout</a></li>'+
 				'</ul>'+
 			'</div>'+
