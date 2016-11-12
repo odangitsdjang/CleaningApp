@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Cleaning App</title>
+  
+  
+  <!-- <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'> -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css">
+  
+</head>
+
+<body>
+
+  
+
+  <form method="post" action="/register">
+  <div class="login-form">
+    <h1>Register</h1>
+
+    <!-- TODO GET THIS ERROR TO SHOW / routing problem -->
+    {{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger"> 
+          {{msg}}
+        </div>
+        {{/each}}
+    {{/if}}
+    
+     <div class="form-group ">
+       <label >Name</label>
+       <input type="text" class="form-control" placeholder="Name" id="name" name="name">
+       <i class="fa fa-user"></i>
+     </div>
+
+     <div class="form-group ">
+       <label >Username</label>
+       <input type="text" class="form-control" placeholder="Username" id="UserName" name="username">
+       <i class="fa fa-user"></i>
+     </div>
+     <div class="form-group ">
+       <label >Email</label>
+       <input type="email" class="form-control" placeholder="Email" id="email" name="email">
+       <i class="fa fa-user"></i>
+     </div>
+     <div class="form-group log-status">
+       <label >Password</label>
+       <input type="password" class="form-control" placeholder="Password" id="Password" name="password">
+       <i class="fa fa-lock"></i>
+     </div>
+     <div class="form-group log-status">
+       <label>Confirm Password</label>
+       <input type="password" class="form-control" placeholder="Confirm Password" id="Password2" name="password2">
+       <i class="fa fa-lock"></i>
+     </div>
+     <button type="submit" class="log-btn" id="signup-btn">Sign Up</button>
+     <!-- <a href="/index/" class="log-btn" onclick="validate()">Log in</a> --> 
+   </div>
+
+ </form>
+
+  <!--<a href="/auth/facebook">Login with Facebook</a> -->
+
+  
+
+  <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/js/bootcards.min.js"></script>
+
+</body>
+</html>

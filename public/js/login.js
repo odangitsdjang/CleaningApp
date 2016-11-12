@@ -25,11 +25,11 @@ function initializePage() {
   var btn = document.getElementById("signup-btn");
   var login_btn = document.getElementById('login-btn');
   var span = document.getElementsByClassName("cancelBtn")[0];
-
+/*
   btn.onclick = function() {
       modal.style.display = "block";
   }
-
+*/
   span.onclick = function() {
       modal.style.display = "none";
   }
