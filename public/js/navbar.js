@@ -1,3 +1,4 @@
+/*
 document.getElementById("navMenu").innerHTML =
  '<nav class="navbar navbar-inverse navbar-static-top"role="navigation">'+
 		'<div class="container">'+
@@ -21,7 +22,7 @@ document.getElementById("navMenu").innerHTML =
 	  	'</div>'+
 	'</nav>';
 
-
+*/
 	/* fixed version 
 '<nav class="navbar navbar-inverse navbar-fixed-top"role="navigation">'+
 		'<div class="container">'+

@@ -11,7 +11,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var path = require('path');
-var handlebars = require('express3-handlebars');
+var handlebars = require('express-handlebars');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
@@ -43,7 +43,7 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', handlebars());
+app.engine('handlebars', handlebars({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 //app.use(express.favicon());
 //app.use(express.logger('dev'));
@@ -101,7 +101,9 @@ var expressValidator2 = expressValidator({
 app.locals.dataJson = require('/data.json'); */
 app.use(function(req,res,next) {
 	res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
 	res.locals.error = req.flash('error');
+  res.locals.users = req.user || null;
 	next();
 });
 

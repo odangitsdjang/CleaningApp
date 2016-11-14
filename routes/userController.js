@@ -21,6 +21,7 @@ exports.postIt = function(req,res){
 
 	if (errors) {
 		res.render('register',{
+			layout: 'loginLayout',
 			errors:errors
 		});
 	} else {

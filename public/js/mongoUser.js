@@ -14,7 +14,7 @@ var uristring =
       if (err) {
       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
       } else {
-      console.log ('Succeeded connected to: ' + uristring);
+      console.log ('Succeeded connecting to: ' + uristring);
       }
     });
 
