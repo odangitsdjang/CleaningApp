@@ -14,74 +14,37 @@
 </head>
 
 <body>
-  <div class="login-form">
-     <h1>Cleaning App</h1>
-     <div class="form-group ">
-       <input type="text" class="form-control" placeholder="Username " id="UserName">
-       <i class="fa fa-user"></i>
-     </div>
-     <div class="form-group log-status">
-       <input type="password" class="form-control" placeholder="Password" id="Passwod">
-       <i class="fa fa-lock"></i>
-     </div>
-      <span class="alert">Invalid Credentials</span>
-     <!-- <a class="link" href="#">Lost your password?</a>-->
-     <button type="button" class="log-btn" id="login-btn">Log in</button>
-     <p float="center">Or</p>
+
+  <form method="post" action="/">
+    <div class="login-form">
+       <h1>Cleaning App</h1>
+       
+      <!-- route this properly (to show when registration is successful)) -->
+      {{#if success_msg}}
+        <div class="alert-success"> {{success_msg}} </div>
+      {{/if}}
+
+       <div class="form-group ">
+         <input type="text" class="form-control" name="username" placeholder="Username " id="UserName">
+         <i class="fa fa-user"></i>
+       </div>
+       <div class="form-group log-status">
+         <input type="password" class="form-control" name="password" placeholder="Password" id="Passwod">
+         <i class="fa fa-lock"></i>
+       </div>
+        <span class="alert">Invalid Credentials</span>
+       <!-- <a class="link" href="#">Lost your password?</a>-->
+       <button type="submit" class="log-btn" id="login-btn">Log in</button>
+       <p float="center">Or</p>
 
 
 
-     <button type="button" class="log-btn"> <a href="/register"> Sign Up </a></button>
-     <!-- <a href="/index/" class="log-btn" onclick="validate()">Log in</a> --> 
-   </div>
-
-   <!-- SIGN UP MODAL -->
-   <div id="signUpModal" class="modal">
-
-  <div class="modal-content">
-
-  <div class="panel panel-default">
-    <div class="panel-heading clearfix">
-      <h3 class="panel-title pull-left">Sign Up</h3>
-      <div class="btn-group pull-right">
-        <button class="btn btn-danger cancelBtn">
-          <i class="fa fa-times"></i>
-          Cancel
-        </button>
-        <button class="btn btn-success" id="saveSignUp">
-          <i class="fa fa-check"></i>
-          Sign Up
-        </button>
-      </div>
+       <div class="log-btn"> <a href="/register"> Sign Up </a></div>
+       <!-- <a href="/index/" class="log-btn" onclick="validate()">Log in</a> --> 
     </div>
-    <div class="modal-body">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-xs-3 control-label">Name</label>
-          <div class="col-xs-9">
-            <input type="text" class="form-control" placeholder="Username " id="signUpName">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-xs-3 control-label">Email</label>
-          <div class="col-xs-9">
-            <input type="text" class="form-control" placeholder="Email " id="signUpEmail">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-xs-3 control-label">Password</label>
-          <div class="col-xs-9">
-            <input type="password" class="form-control" placeholder="Password" id="signUpPassword">
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="panel-footer">
-      <small></small>
-    </div>
-  </div>
-  </div>
-  </div>
+  </form>
+
+   
   <!--<a href="/auth/facebook">Login with Facebook</a> -->
 
 

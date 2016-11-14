@@ -15,10 +15,9 @@ var handlebars = require('express3-handlebars');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-//mongoose.connect('mongodb://localhost/CleaningApp');
-//var db = mongoose.connection;
+
+// Include MongoDB stuff 
+var User = require('./public/js/mongoUser.js');
 
 //var fs = require('fs');
 //var jsonfile = require('jsonfile') // to read and write JSON more easily
@@ -32,6 +31,7 @@ var group = require('./routes/group');
 var leaderboard = require('./routes/leaderboard');
 var other = require('./routes/other');
 var registerFile = require('./routes/register');
+var userController = require('./routes/userController');
 
 
 
@@ -52,6 +52,17 @@ app.use(express.urlencoded());
 //app.use(express.methodOverride());
 app.use(express.cookieParser('Intro HCI secret key'));
 app.use(express.session());
+
+
+// Middleware for Flash
+app.use(flash());
+var flash2 = flash();
+
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -62,9 +73,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(cookieParser());
 
-// Passport
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 // Middleware Express-Validator
@@ -85,14 +94,13 @@ var expressValidator2 = expressValidator({
   }
 });
 
-// Middleware for Flash
-app.use(flash());
 
 
 
 /* global variable dataJson (can be used in other files)
 app.locals.dataJson = require('/data.json'); */
 app.use(function(req,res,next) {
+	res.locals.success_msg = req.flash('success_msg');
 	res.locals.error = req.flash('error');
 	next();
 });
@@ -103,6 +111,46 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+
+  	User.getUserByUsername(username, function(err,user){
+  		if(err) throw err;
+  		if(!user) {
+  			return done(null, false, {message:'Unknown User'});
+  		}
+
+  		User.comparePassword(password, user.password, function(err, isMatch) {
+  			if(err) throw err;
+  			if(isMatch) {
+  				return done(null, user);
+  			}
+  			else {
+  				return done(null, false, {message: 'Invalid Password'});
+  			}
+
+
+  		});
+  	});
+ 
+  }));
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+
+
+
+
+
 // Add routes here
 app.get('/', login.view);
 app.get('/index', index.viewIndex);
@@ -111,7 +159,16 @@ app.get('/group', group.viewGroup);
 app.get('/leaderboard', leaderboard.viewLeaderboard);
 app.get('/other', other.viewOther);
 app.get('/register', registerFile.viewRegister);
-app.post('/register', expressValidator2, registerFile.postIt);
+// pass in other variables to use the functions from it!
+app.post('/register', expressValidator2, flash2, userController.postIt);
+
+app.post('/', 
+	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
+	function(req,res) {
+		console.log("Entered2");
+		res.redirect('/index');
+
+	});
 
 
 
