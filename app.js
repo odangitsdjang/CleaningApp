@@ -54,9 +54,26 @@ app.use(express.cookieParser('Intro HCI secret key'));
 app.use(express.session());
 
 
-// Middleware for Flash
+// Middleware BodyParser,CookieParser
+var jsonParser = bodyParser.json()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+// Middleware for Flash THE MIDDLEWARE ORDER IS IMPORTANT!!!! BE CAREFUL WHEN ADDING OTHER MIDDLEWARE
 app.use(flash());
 var flash2 = flash();
+
+/* global variable dataJson (can be used in other files)
+app.locals.dataJson = require('/data.json'); */
+app.use(function(req,res,next) {
+  res.locals.tester = 0;
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.users = req.user || null;
+  next();
+});
+
+
 
 
 // Passport
@@ -65,13 +82,6 @@ app.use(passport.session());
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-// Middleware BodyParser,CookieParser
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-app.use(cookieParser());
 
 
 
@@ -93,20 +103,6 @@ var expressValidator2 = expressValidator({
     };
   }
 });
-
-
-
-
-/* global variable dataJson (can be used in other files)
-app.locals.dataJson = require('/data.json'); */
-app.use(function(req,res,next) {
-	res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-	res.locals.error = req.flash('error');
-  res.locals.users = req.user || null;
-	next();
-});
-
 
 // development only
 if ('development' == app.get('env')) {
@@ -167,7 +163,7 @@ app.post('/register', expressValidator2, flash2, userController.postIt);
 app.post('/', 
 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
 	function(req,res) {
-		console.log("Entered2");
+   // req.flash('success_msg', 'You have logged in successfully!');
 		res.redirect('/index');
 
 	});

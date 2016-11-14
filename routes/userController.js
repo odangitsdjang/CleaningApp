@@ -38,9 +38,8 @@ exports.postIt = function(req,res){
 
 		});
 
-
-		// Below is currently not working in the login page, will need to redesign the views(handlebars).
 		req.flash('success_msg', 'You are registered!');
+
 		res.redirect('/');
 	}
 };
