@@ -10,6 +10,7 @@ exports.postIt = function(req,res){
 	var password2 = req.body.password2;
 
 	// checkBody is an expresss-validator function! 
+	// First checks
     req.checkBody('name', 'Name is required!').notEmpty();
 	req.checkBody('email', 'Email is required!').notEmpty();
 	req.checkBody('email', 'Email is not valid!').isEmail();
