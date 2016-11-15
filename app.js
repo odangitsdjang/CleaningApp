@@ -159,6 +159,7 @@ app.get('/other', other.viewOther);
 app.get('/register', registerFile.viewRegister);
 // pass in other variables to use the functions from it!
 app.post('/register', expressValidator2, flash2, userController.postIt);
+app.post('/tasks', tasks.updateTasks)
 
 app.post('/', 
 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
