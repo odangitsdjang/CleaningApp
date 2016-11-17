@@ -1,4 +1,6 @@
 var User = require('./mongoUser.js');
+var bcrypt = require('bcryptjs');
+var mongoose = require('mongoose');
 
 var TaskSchema = mongoose.Schema({ 
 
@@ -21,13 +23,7 @@ var TaskSchema = mongoose.Schema({
 
 var Task = module.exports = mongoose.model('Task', TaskSchema);
 
-/*
-module.exports.createUser = function(newUser, callback){
-	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, function(err, hash) {
-	        newUser.password = hash;
-	        newUser.save(callback);
-	    });
-	});
+
+module.exports.createTask = function(newTask, callback){
+	newTask.save(callback);
 }
-*/
