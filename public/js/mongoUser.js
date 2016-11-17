@@ -11,7 +11,7 @@ var uristring =
     var theport = process.env.PORT || 5000;
 
 console.log("MONGOLAB_URI is ");
-console.log(MONGOLAB_URI);
+console.log(process.env.MONGOLAB_URI);
 
 mongoose.connect(uristring, function (err, res) {
       if (err) {
