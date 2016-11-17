@@ -41,32 +41,7 @@ var UserSchema = mongoose.Schema({
 
 });
 
-
-
-
-
-var TaskSchema = mongoose.Schema({ 
-
-	name: {
-		type: String
-	},
-
-	reward: {
-		type: Number
-	},
-
-	description: {
-		type: String
-	},
-
-	userSelected: {
-		type: Boolean
-	}
-});
-
 var User = module.exports = mongoose.model('User', UserSchema);
-
-var Task = module.exports = mongoose.model('Task', TaskSchema);
 
 module.exports.createUser = function(newUser, callback){
 	bcrypt.genSalt(10, function(err, salt) {
