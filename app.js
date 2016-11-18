@@ -66,7 +66,7 @@ var flash2 = flash();
 /* global variable dataJson (can be used in other files)
 app.locals.dataJson = require('/data.json'); */
 app.use(function(req,res,next) {
-  res.locals.tester = 0;
+  
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
