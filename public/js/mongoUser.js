@@ -7,12 +7,12 @@ var uristring =
     'mongodb://localhost/CleaningApp';
 */
 // heroku mode 
-// var uristring = 'mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj';
+var uristring = 'mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj';
 // Heroku key (from the command  'heroku config | grep MONGODB_URI' )
 // mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj
 
 // localhost mode 
-var uristring= 'mongodb://localhost/CleaningApp';
+//var uristring= 'mongodb://localhost/CleaningApp';
 
 
     // The http server will listen to an appropriate port, or default to

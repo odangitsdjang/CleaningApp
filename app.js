@@ -25,6 +25,7 @@ var User = require('./public/js/mongoUser.js');
 
 // All the pages for our project!
 var login = require('./routes/login');
+var login2= require('./routes/login2');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 var group = require('./routes/group');
@@ -151,6 +152,7 @@ passport.deserializeUser(function(id, done) {
 
 // Add routes here
 app.get('/', login.view);
+app.get('/login2', login2.viewLogin2);
 app.get('/index', index.viewIndex);
 app.get('/tasks', tasks.viewTasks);
 app.get('/group', group.viewGroup);
