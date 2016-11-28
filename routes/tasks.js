@@ -87,7 +87,7 @@ exports.editTasks = function(req,res) {
 
         //collection.remove({"name": memberName});
         collection.update({'name': oldName},{$set:{'name':taskName}});
-        collection.update({'reward': oldReward},{$set:{'reward':taskReward}});
+        collection.update({'reward': parseInt(oldReward)},{$set:{'reward': parseInt(taskReward)}});
         collection.update({'description': oldDescription},{$set:{'description':taskDescription}});
 
         db.close()
