@@ -1,5 +1,4 @@
 var User = require('./mongoUser.js');
-var bcrypt = require('bcryptjs');
 var mongoose = require('mongoose');
 
 var TaskSchema = mongoose.Schema({ 

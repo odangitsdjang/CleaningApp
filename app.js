@@ -154,12 +154,13 @@ passport.deserializeUser(function(id, done) {
 // Add routes here
 app.get('/', login.view);
 app.get('/login2', login2.viewLogin2);
-app.get('/index', index.viewIndex);
-app.get('/tasks', tasks.viewTasks);
-app.get('/group', group.viewGroup);
-app.get('/leaderboard', leaderboard.viewLeaderboard);
-app.get('/other', other.viewOther);
+app.get('/index', ensureAuthenticated, index.viewIndex);
+app.get('/tasks', ensureAuthenticated, tasks.viewTasks);
+app.get('/group', ensureAuthenticated, group.viewGroup);
+app.get('/leaderboard', ensureAuthenticated, leaderboard.viewLeaderboard);
+app.get('/other', ensureAuthenticated,  other.viewOther);
 app.get('/register', registerFile.viewRegister);
+app.get('/logout', flash2, login.logOut);
 // pass in other variables to use the functions from it!
 app.post('/register', expressValidator2, flash2, userController.postIt);
 app.post('/tasks', tasks.updateTasks);
@@ -170,20 +171,34 @@ app.post('/group', group.updateGroup);
 app.post('/group/delete', group.deleteGroup);
 app.post('/index/complete', index.completeTask);
 
-// app.post('/', 
-// 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true})); 
-	// function(req,res) {
- //   // req.flash('success_msg', 'You have logged in successfully!');
-	// 	res.redirect('/index', {
- //      username: currentUser
- //    });
+function ensureAuthenticated(req,res,next) {
+  if(req.isAuthenticated()){
+    return next();
+  } else {
+    req.flash('error_msg','You are not logged in');
+    res.redirect('/');
+  }
+};
 
-	// });
+
+
+/*
+ app.post('/', 
+ 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
+	 function(req,res) {
+    // req.flash('success_msg', 'You have logged in successfully!');
+	 	res.redirect('/index', {
+       username: currentUser
+     });
+	 });
+*/
 
   app.post('/', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err); }
-      if (!user) { return res.redirect('/'); }
+      if (!user) { 
+        return res.redirect('/'); 
+      }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
         currentUser = user.username;
