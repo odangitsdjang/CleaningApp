@@ -5,25 +5,51 @@ var tasksController = require('../public/js/tasks.js');
 jsonfile.writeFile(file,data1);
 */
 
-var User = require('../public/js/mongoUser.js');
+// var User = require('../public/js/mongoUser.js');
 var Task = require('../public/js/mongoTasks.js');
-
+var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var dJ = require('../data1.json');
+var tasksCount, taskList, groupList;
 
 exports.viewTasks = function(req, res){
-  res.render('tasks', {
-  	dataJson: dJ
-  });
+	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+    if(err) throw err;
+
+    var collection = db.collection('tasks');
+    var collection2 = db.collection('groups');
+    
+      // collection.count(function(err, count) {
+      //   //console.log(format("count = %s", count));
+      //   tasksCount = count;
+      // }); 
+
+      // Locate all the entries using find
+      collection.find().toArray(function(err, results) {
+        taskList = results;             
+      });
+
+      collection2.find().toArray(function(err,results) {
+      	groupList = results;
+      	// console.dir(groupList);
+      });
+
+      db.close();
+  	})
+
+	res.render('tasks', {
+ 		dataJson: dJ,
+ 		tasks: taskList,
+ 		groups: groupList
+	});
 
 };
-
 
 
 exports.updateTasks = function(req,res) {
 	var name = req.body.name;
 	var reward = req.body.reward;
 	var description = req.body.description;
-	var userSelected = false;
+	var userSelected = "";
 
 	var newTask = new Task({
 				name: name,
@@ -38,5 +64,71 @@ exports.updateTasks = function(req,res) {
 
 		});
 
-	res.redirect('/index');
+	res.redirect(req.get('referer'));
+
+	// res.redirect('/index');
+}
+
+
+exports.editTasks = function(req,res) {
+	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+        if(err) throw err;
+
+        var collection = db.collection('tasks');
+
+        var oldName = req.body.oldName || req.query.oldName;
+        var oldReward = req.body.oldReward || req.query.oldReward;
+        var oldDescription = req.body.oldDescription || req.query.oldDescription;
+
+        var taskName = req.body.taskName || req.query.taskName; 
+        var taskReward = req.body.taskReward || req.query.taskReward;
+        var taskDescription = req.body.taskDescription || req.query.taskDescription;
+        console.dir(taskName);
+
+        //collection.remove({"name": memberName});
+        collection.update({'name': oldName},{$set:{'name':taskName}});
+        collection.update({'reward': oldReward},{$set:{'reward':taskReward}});
+        collection.update({'description': oldDescription},{$set:{'description':taskDescription}});
+
+        db.close()
+        // Group.removeMember(memberName, function(err,group){
+        //     if(err) throw err;
+        //     console.log(group);
+        // })
+    })
+}
+
+exports.removeTasks = function(req,res){
+	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+        if(err) throw err;
+
+        var collection = db.collection('tasks');
+
+        var taskName = req.body.taskID || req.query.taskID;
+        console.dir(taskName);
+
+        collection.remove({"name": taskName});
+
+        db.close()
+        // Group.removeMember(memberName, function(err,group){
+        //     if(err) throw err;
+        //     console.log(group);
+        // })
+    })
+}
+
+exports.selectUser = function(req,res){
+	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+        if(err) throw err;
+
+        var collection = db.collection('tasks');
+
+        var selectedUser = req.body.selectedUser || req.query.selectedUser;
+        var taskName = req.body.taskName || req.query.taskName;
+        console.dir(selectedUser);
+
+        collection.update({'name': taskName},{$set:{'userSelected': selectedUser}});
+
+        db.close()
+    })
 }

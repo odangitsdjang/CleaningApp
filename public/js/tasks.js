@@ -8,85 +8,87 @@
 // 		"tasks": []
 // 	}
 
-var count = (localStorage.getItem('currTaskCount')===null)?0:(localStorage.getItem('currTaskCount'));
-var editCount = -1;
+
+var editCount;
+var removeCount;
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {       
 	// window.localStorage.clear();
-	displayTasks();
+	//displayTasks();
+	//history.go(0);
 	initializePage();
 })
 
-function displayTasks(){
-	if(count != 0){
-	for(var i = 0; i < count; i++){
-		var newDiv = document.createElement("div"); 
-		//newDiv.id = "displayName"+count;
-		newDiv.innerHTML = 
-			'<div class="panel panel-default">' +
-	  			'<div class="panel-heading clearfix">' + 
-	    			'<h3 class="panel-title pull-left"><span id="displayName'+i+'"></span></h3>'+
-	      			'<button class="btn btn-primary pull-right" onclick="editPressed(this)" id="editTask'+i+'">'+
-	        		'<i class="fa fa-pencil"></i>'+
-	        		'Edit'+
-	      			'</button>'+
-	    		'</div>'+
-	    		'<div class="list-group">'+
-	      			'<div class="list-group-item">'+
-	        			'<p class="list-group-item-text">Reward</p>'+
-	        			'<h4 class="list-group-item-heading"><span id="displayReward'+i+'"></span></h4>'+
-	      			'</div>'+
-	      			'<div class="list-group-item">'+
-	        			'<p class="list-group-item-text"><span id="displayDescription'+i+'"></p>'+
-	      			'</div>'+
-	      			'<div class="list-group-item">'+ 	    
-	        			'<button onclick="selecUser(this)" id="selectUser'+i+'" class="dropbtn">Select User</button>'+
-	        			'<div class="dropdown-content" id="displayUser'+i+'">'+
-	        			'<div id="userlinks"></div>'+
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Sarmed</a>'+
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">David</a>'+
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Alex</a>'+
-	        			'</div>'+
-	        			'<div id="selectedUser'+i+'" value=""></div>'+
-	      			 '</div>'+
-	    		'</div>'+
-	  			'<div class="panel-footer">'+
-	    			'<small></small>'+
-	  			'</div>'+
-			'</div>';
+// function displayTasks(){
+// 	if(count != 0){
+// 	for(var i = 0; i < count; i++){
+// 		var newDiv = document.createElement("div"); 
+// 		//newDiv.id = "displayName"+count;
+// 		newDiv.innerHTML = 
+// 			'<div class="panel panel-default">' +
+// 	  			'<div class="panel-heading clearfix">' + 
+// 	    			'<h3 class="panel-title pull-left"><span id="displayName'+i+'"></span></h3>'+
+// 	      			'<button class="btn btn-primary pull-right" onclick="editPressed(this)" id="editTask'+i+'">'+
+// 	        		'<i class="fa fa-pencil"></i>'+
+// 	        		'Edit'+
+// 	      			'</button>'+
+// 	    		'</div>'+
+// 	    		'<div class="list-group">'+
+// 	      			'<div class="list-group-item">'+
+// 	        			'<p class="list-group-item-text">Reward</p>'+
+// 	        			'<h4 class="list-group-item-heading"><span id="displayReward'+i+'"></span></h4>'+
+// 	      			'</div>'+
+// 	      			'<div class="list-group-item">'+
+// 	        			'<p class="list-group-item-text"><span id="displayDescription'+i+'"></p>'+
+// 	      			'</div>'+
+// 	      			'<div class="list-group-item">'+ 	    
+// 	        			'<button onclick="selecUser(this)" id="selectUser'+i+'" class="dropbtn">Select User</button>'+
+// 	        			'<div class="dropdown-content" id="displayUser'+i+'">'+
+// 	        			'<div id="userlinks"></div>'+
+// 	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Sarmed</a>'+
+// 	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">David</a>'+
+// 	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+i+'">Alex</a>'+
+// 	        			'</div>'+
+// 	        			'<div id="selectedUser'+i+'" value=""></div>'+
+// 	      			 '</div>'+
+// 	    		'</div>'+
+// 	  			'<div class="panel-footer">'+
+// 	    			'<small></small>'+
+// 	  			'</div>'+
+// 			'</div>';
 
-		var currentDiv = document.getElementById("tasks"); 
-   		currentDiv.appendChild(newDiv);
+// 		var currentDiv = document.getElementById("tasks"); 
+//    		currentDiv.appendChild(newDiv);
 
-  // 		var newDiv2 = document.createElement("div");
-  // 		newDiv2.innerHTML = '';
+//   // 		var newDiv2 = document.createElement("div");
+//   // 		newDiv2.innerHTML = '';
 
-  // 		for(var j = 0; j < localStorage.getItem("totalMembers");j++){
-  // 			var currMem = localStorage.getItem("myGroup"+j);
-  // 			if(currMem !== null){
-  // 				console.log(currMem);
-  // 				newDiv2.innerHTML += '<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+j+'">'+currMem+'</a>'
-  // 			}
-  // 		}
-  // 		var currDiv = document.getElementById("userlinks");
-  // 		currDiv.appendChild(newDiv2);
+//   // 		for(var j = 0; j < localStorage.getItem("totalMembers");j++){
+//   // 			var currMem = localStorage.getItem("myGroup"+j);
+//   // 			if(currMem !== null){
+//   // 				console.log(currMem);
+//   // 				newDiv2.innerHTML += '<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+j+'">'+currMem+'</a>'
+//   // 			}
+//   // 		}
+//   // 		var currDiv = document.getElementById("userlinks");
+//   // 		currDiv.appendChild(newDiv2);
   	
 
 
-		document.getElementById('displayName'+i).innerHTML = localStorage.getItem("taskName"+i);
+// 		document.getElementById('displayName'+i).innerHTML = localStorage.getItem("taskName"+i);
 	                    
-	    document.getElementById('displayReward'+i).innerHTML = 
-	                    localStorage.getItem("taskReward"+i);
+// 	    document.getElementById('displayReward'+i).innerHTML = 
+// 	                    localStorage.getItem("taskReward"+i);
 
-	    document.getElementById('displayDescription'+i).innerHTML = 
-	                    localStorage.getItem("taskDescription"+i);
+// 	    document.getElementById('displayDescription'+i).innerHTML = 
+// 	                    localStorage.getItem("taskDescription"+i);
 
-	   // document.getElementById("editTask"+i).onclick = function() {editPressed()};
-	   }
+// 	   // document.getElementById("editTask"+i).onclick = function() {editPressed()};
+// 	   }
  
-	}
-}
+// 	}
+// }
 
 /*
  * Function that is called when the document is ready.
@@ -135,94 +137,113 @@ function initializePage() {
 	    }
 	}
 
-	saveTask.onclick = function createDiv() {
+	// saveTask.onclick = function createDiv() {
 
-		var newDiv = document.createElement("div"); 
-		//newDiv.id = "displayName"+count;
-		newDiv.innerHTML = 
-			'<div class="panel panel-default">' +
-	  			'<div class="panel-heading clearfix">' + 
-	    			'<h3 class="panel-title pull-left"><span id="displayName'+count+'"></span></h3>'+
-	      			'<button class="btn btn-primary pull-right" onclick="editPressed(this)" id="editTask'+count+'">'+
-	        		'<i class="fa fa-pencil"></i>'+
-	        		'Edit'+
-	      			'</button>'+
-	    		'</div>'+
-	    		'<div class="list-group">'+
-	      			'<div class="list-group-item">'+
-	        			'<p class="list-group-item-text">Reward</p>'+
-	        			'<h4 class="list-group-item-heading"><span id="displayReward'+count+'"></span></h4>'+
-	      			'</div>'+
-	      			'<div class="list-group-item">'+
-	        			'<p class="list-group-item-text"><span id="displayDescription'+count+'"></p>'+
-	      			'</div>'+
-	      			'<div class="dropdown list-group-item">'+ 
+	// 	var newDiv = document.createElement("div"); 
+	// 	//newDiv.id = "displayName"+count;
+	// 	newDiv.innerHTML = 
+	// 		'<div class="panel panel-default">' +
+	//   			'<div class="panel-heading clearfix">' + 
+	//     			'<h3 class="panel-title pull-left"><span id="displayName'+count+'"></span></h3>'+
+	//       			'<button class="btn btn-primary pull-right" onclick="editPressed(this)" id="editTask'+count+'">'+
+	//         		'<i class="fa fa-pencil"></i>'+
+	//         		'Edit'+
+	//       			'</button>'+
+	//     		'</div>'+
+	//     		'<div class="list-group">'+
+	//       			'<div class="list-group-item">'+
+	//         			'<p class="list-group-item-text">Reward</p>'+
+	//         			'<h4 class="list-group-item-heading"><span id="displayReward'+count+'"></span></h4>'+
+	//       			'</div>'+
+	//       			'<div class="list-group-item">'+
+	//         			'<p class="list-group-item-text"><span id="displayDescription'+count+'"></p>'+
+	//       			'</div>'+
+	//       			'<div class="dropdown list-group-item">'+ 
 	      				
-	        			'<button onclick="selecUser(this)" id="selectUser'+count+'" class="dropbtn">Select User</button>'+
-	        			'<div class="dropdown-content" id="displayUser'+count+'">'+
+	//         			'<button onclick="selecUser(this)" id="selectUser'+count+'" class="dropbtn">Select User</button>'+
+	//         			'<div class="dropdown-content" id="displayUser'+count+'">'+
 
-	        			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+count+'"></a>'+
-	        			'<a href="#">fg</a>'+
-	        			'<a href="#">adf</a>'+
-	        			'</div>'+
-	        			'<div id="selectedUser'+count+'" value=""></div>'+
-	      			'</div>'+
-	    		'</div>'+
-	  			'<div class="panel-footer">'+
-	    			'<small></small>'+
-	  			'</div>'+
-			'</div>';
+	//         			'<a href="javascript:;" onclick="selectedUser(this)" id="userSel'+count+'"></a>'+
+	//         			'<a href="#">fg</a>'+
+	//         			'<a href="#">adf</a>'+
+	//         			'</div>'+
+	//         			'<div id="selectedUser'+count+'" value=""></div>'+
+	//       			'</div>'+
+	//     		'</div>'+
+	//   			'<div class="panel-footer">'+
+	//     			'<small></small>'+
+	//   			'</div>'+
+	// 		'</div>';
 
-		var currentDiv = document.getElementById("tasks"); 
+	// 	var currentDiv = document.getElementById("tasks"); 
   
-  		currentDiv.appendChild(newDiv);
+ //  		currentDiv.appendChild(newDiv);
 
 
-		var a = document.getElementById('displayName'+count).innerHTML = 
-	                    document.getElementById("taskName").value;
+	// 	var a = document.getElementById('displayName'+count).innerHTML = 
+	//                     document.getElementById("taskName").value;
 
-	    var b =document.getElementById('displayReward'+count).innerHTML = 
-	                    '$'+document.getElementById("taskReward").value;
+	//     var b =document.getElementById('displayReward'+count).innerHTML = 
+	//                     '$'+document.getElementById("taskReward").value;
 
-	    var c = document.getElementById('displayDescription'+count).innerHTML = 
-	                    document.getElementById("taskDescription").value;
-
-
-	    // data.tasks.push({
-	    // 	"taskName":a,
-	    // 	"taskReward":b,
-	    // 	"taskDescription":c
-	    // }); 
-	    //data.taskCount++;
-	    // writeData();
+	//     var c = document.getElementById('displayDescription'+count).innerHTML = 
+	//                     document.getElementById("taskDescription").value;
 
 
-		//THIS SAVES CRAP TO LOCAL STORAGE. 
-		//var json = JSON.stringify(data);
-		//localStorage.setItem('task'+data.taskCount, json);
-		localStorage.setItem('taskName'+count, a);
-		localStorage.setItem('taskReward'+count, b);
-		localStorage.setItem('taskDescription'+count, c);
-		//
+	//     // data.tasks.push({
+	//     // 	"taskName":a,
+	//     // 	"taskReward":b,
+	//     // 	"taskDescription":c
+	//     // }); 
+	//     //data.taskCount++;
+	//     // writeData();
 
- 		editTask = document.getElementById("editTask"+count);
- 		//document.getElementById("editTask"+count).onclick = function() {editPressed()};
- 		selectUser = document.getElementById("selectUser"+count);
 
- 		count++;
- 		localStorage.setItem('currTaskCount', count);
+	// 	//THIS SAVES CRAP TO LOCAL STORAGE. 
+	// 	//var json = JSON.stringify(data);
+	// 	//localStorage.setItem('task'+data.taskCount, json);
+	// 	localStorage.setItem('taskName'+count, a);
+	// 	localStorage.setItem('taskReward'+count, b);
+	// 	localStorage.setItem('taskDescription'+count, c);
+	// 	//
+
+ // 		editTask = document.getElementById("editTask"+count);
+ // 		//document.getElementById("editTask"+count).onclick = function() {editPressed()};
+ // 		selectUser = document.getElementById("selectUser"+count);
+
+ // 		count++;
+ // 		localStorage.setItem('currTaskCount', count);
  		
-		//	looping just to see whats in storage
-		 // for(var i = 0; i <= count; i++)
-		 // 	console.log((localStorage.getItem('taskReward'+i)));
+	// 	//	looping just to see whats in storage
+	// 	 // for(var i = 0; i <= count; i++)
+	// 	 // 	console.log((localStorage.getItem('taskReward'+i)));
 
-	    modal.style.display = "none";
-	}; 
+	//     modal.style.display = "none";
+	// }; 
 
 	window.editPressed = function(elem){
 		editModal.style.display = "block";
 		editCount = elem.id[8];
+//		console.log(editCount);
 
+	}
+
+	window.removePressed = function(elem){
+		removeCount = elem.id[10];
+
+		var taskName = $("#displayName"+removeCount).text()
+//console.log(taskName)
+		$.ajax({
+	         method: "POST",
+	         url: "/tasks/remove",
+	         data: {"taskID": taskName},
+	         success: function(result) {
+	            location.reload();	     
+	         }
+	    })
+
+	    location.reload();
+	    location.reload();
 	}
 
 	// saveEdit.onclick = function savEdit(){
@@ -234,13 +255,41 @@ function initializePage() {
 	// }
 
 	window.saveEdit = function(){
-		console.log(editCount);
-		if(document.getElementById("taskNameEdit").value != "") localStorage.setItem('taskName'+editCount, document.getElementById("taskNameEdit").value);
-		if(document.getElementById("taskRewardEdit").value != "") localStorage.setItem('taskReward'+editCount, '$'+document.getElementById("taskRewardEdit").value);
-		if(document.getElementById("taskDescriptionEdit").value != "") localStorage.setItem('taskDescription'+editCount, document.getElementById("taskDescriptionEdit").value);
+		//console.log(editCount);
+		// if(document.getElementById("taskNameEdit").value != "") localStorage.setItem('taskName'+editCount, document.getElementById("taskNameEdit").value);
+		// if(document.getElementById("taskRewardEdit").value != "") localStorage.setItem('taskReward'+editCount, '$'+document.getElementById("taskRewardEdit").value);
+		// if(document.getElementById("taskDescriptionEdit").value != "") localStorage.setItem('taskDescription'+editCount, document.getElementById("taskDescriptionEdit").value);
+
+
+		var taskName = $("#displayName"+editCount).text()
+		var taskReward = $("#displayReward"+editCount).text()
+		var taskDescription = $("#displayDescription"+editCount).text() 
+
+		var newTaskName = document.getElementById("taskNameEdit").value 
+		var newTaskReward = document.getElementById("taskRewardEdit").value 
+		var newTaskDescription = document.getElementById("taskDescriptionEdit").value 
+
+		if(newTaskName == "") newTaskName = taskName;
+		if(newTaskReward == "") newTaskReward = taskReward;
+		if(newTaskDescription == "") newTaskDescription = taskDescription;
 
 		editModal.style.display = "none";
-		history.go(0); //refresh page
+
+		// console.log(taskName);
+		// console.log(taskReward);
+		// console.log(taskDescription);
+
+      		$.ajax({
+	         method: "POST",
+	         url: "/tasks/update",
+	         data: {"taskName": newTaskName, "taskReward": newTaskReward, "taskDescription": newTaskDescription,
+	     			"oldName": taskName, "oldReward": taskReward, "oldDescription": taskDescription},
+	         success: function(result) {
+	            location.reload();	     
+	         }
+	      	})
+
+		//history.go(0); //refresh page
 	}
 	
 
@@ -248,12 +297,22 @@ function initializePage() {
 		document.getElementById('displayUser'+(elem.id[10])).classList.toggle("show");
 	}
 
-	window.selectedUser = function(elem){
+	window.selectedUser = function(elem, ind){
 		//elem is contains the value of user 
 		//need also task so can store user to task
-		console.log(elem.innerHTML);
-		document.getElementById("selectedUser"+elem.id[7]).innerHTML = elem.innerHTML;
-		localStorage.setItem("selectedUser"+elem.id[7], elem.innerHTML);
+		//console.log(elem.innerHTML);
+		var selectedUser = elem.innerHTML;
+		var taskName = $("#displayName"+ind).text()
+		//document.getElementById("selectedUser"+elem.id[7]).innerHTML = elem.innerHTML;
+		//localStorage.setItem("selectedUser"+elem.id[7], elem.innerHTML);
+		$.ajax({
+	         method: "POST",
+	         url: "/tasks/select",
+	         data: {"selectedUser": selectedUser, "taskName": taskName},
+	         success: function(result) {
+	            location.reload();	     
+	         }
+	     })
 
 	}
 

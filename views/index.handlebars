@@ -1,122 +1,79 @@
-﻿<!-- <body onload="sumcurrency()"> -->
-    <!-- <div class="jumbotron">
-        <div class="panel panel-default">
+﻿
+   <h2>Current <a href="/tasks">tasks:</a>{{count}}</h2><br><hr><hr>
+   <div id="myTasks">
+        <div class="jumbotron">
             <div class="panel-heading clearfix">
                 <h3 class="panel-title pull-left">
                     <span id="">
-                        <h2>User's Currency</h2>
+                    {{#each username}}
+                        <h2>{{this.name}}'s Tasks</h2>
+                    {{/each}}
                     </span>
                 </h3>
             </div>
-            <div class="list-group">
-                <div class="list-group-item">
-                    <h3>Currency <span id=""><h4 id="UserCurrency" style="float:right"></h4></span></h3>
-                </div>
-            </div>
         </div>
-    </div>   -->      
-        <!-- <div class="jumbotron">
-            <h2>Current <a href="/tasks">tasks:</a> {{ dataJson.taskCount}} </h2>
-            {{#each dataJson.tasks}}
-            <div class="tasklist">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h3 class="panel-title pull-left"><span id=""><h2> {{this.taskName }}</h2></span></h3>                
-                        <a class="btn btn-primary pull-right" href="#" id="editTask()">
-                            <i class="fa fa-pencil"></i>
-                            Edit 
-                        </a>
-                    </div>
-                    <div class="list-group">
-                        <div class="list-group-item">
-                            <p class="list-group-item-text"> </p>
-                            <h3>Reward:</h3> <h4><a href="/tasks/">${{this.taskReward}}</a></h4>
-                            <h4 class="list-group-item-heading"><span id=""></span></h4>
+            {{#each usersTasks}}
+            <div class="tasklist" id="taskshome{{@index}}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left"><span id="displayName{{@index}}"><h2></h2></span>{{this.name}}</h3>                
+                            <a class="btn btn-primary pull-right" onclick="completeTask(this)" id="comp{{@index}}">
+                                <i class="fa fa-pencil"></i>
+                                Complete
+                            </a>
                         </div>
-                        <div class="list-group-item">
-                            <h3>Description:</h3> <h4>{{this.taskDescription}}</h4>
-                            <p class="list-group-item-text"><span id=""></span></p>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <p class="list-group-item-text"></p>
+                                <h3>Reward:</h3> <h4><a href="/tasks/" id="displayReward{{@index}}"></a>{{this.reward}}</h4>
+                                <h4 class="list-group-item-heading"><span id=""></span></h4>
+                            </div>
+                            <div class="list-group-item">
+                                <h3>Description:</h3> <h4></h4>
+                                <p class="list-group-item-text"><span id="displayDescription{{@index}}"></span>{{this.description}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <small></small>
+                        <div class="panel-footer">
+                            <small></small>
+                        </div>
                     </div>
                 </div>
             </div>
             {{/each}}
-        </div> -->
-   <div id="myTasks"></div>
-   <div id="userTasks"></div>
-
-
-
-
-
-
- <!--  old
-
-
-  <script>
-        // function sumcurrency(dataJson) {
-        //     var sum = 0;
-        //     {{#each dataJson.tasks}}
-        //     sum = sum + {{this.taskReward}};
-        //     {{/each}}
-        //         document.getElementById("UserCurrency").innerHTML = sum;
-        // }
-    </script>
-
-        <div class="tasklist">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                     <h3 class="panel-title pull-left"><span id="displayName' + count + '"><h1>John Doe</h1></span></h3>
-                <a class="btn btn-primary pull-right" href="#">
-                   <i class="fa fa-pencil"></i>
-                Edit 
-                        </a>
-                    </div>
-                <div class="list-group">
-                <div class="list-group-item">
-                <p class="list-group-item-text"> </p>
-                <h3>Reward:</h3> <h4><a href="/tasks/">$1.02</a></h4>
-                <h4 class="list-group-item-heading"><span id="displayReward' + count + '"></span></h4>
+    </div> <!-- end mytasks -->
+    <br><hr><hr><br>
+   <div id="userTasks">
+    <div class="jumbotron">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">
+                    <span id="">
+                        <h2>Other Tasks</h2>
+                    </span>
+                </h3>
+            </div>
+        </div>
+            {{#each otherTasks}}
+            <div class="tasklist" id="taskshome{{@index}}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h3 class="panel-title pull-left"><span id="displayName{{@index}}"><h2></h2></span>{{this.name}}</h3> 
                         </div>
-                        <div class="list-group-item">
-                            <h3>Description:</h3> <h4>Scrub the stain off the bathroom floor</h4>
-                           <p class="list-group-item-text"><span id="displayDescription' + count + '"></span></p>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <p class="list-group-item-text"></p>
+                                <h3>Reward:</h3> <h4><a href="/tasks/" id="displayReward{{@index}}"></a>{{this.reward}}</h4>
+                                <h4 class="list-group-item-heading"><span id=""></span></h4>
+                            </div>
+                            <div class="list-group-item">
+                                <h3>Description:</h3> <h4></h4>
+                                <p class="list-group-item-text"><span id="displayDescription{{@index}}"></span>{{this.description}}</p>
+                            </div>
                         </div>
-                    </div>
-                <div class="panel-footer">
-                <small></small>
+                        <div class="panel-footer">
+                            <small></small>
+                        </div>
                     </div>
                 </div>
-
-        </div>
-
-        <div class="tasklist">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                     <h3 class="panel-title pull-left"><span id="displayName' + count + '"><h1>Jane Smith</h1></span></h3>
-                <a class="btn btn-primary pull-right" href="#">
-                   <i class="fa fa-pencil"></i>
-                Edit 
-                        </a>
-                    </div>
-                <div class="list-group">
-                <div class="list-group-item">
-                <p class="list-group-item-text"> </p>
-                <h3>Reward:</h3> <h4><a href="/tasks/">$0.99</a></h4>
-                <h4 class="list-group-item-heading"><span id="displayReward' + count + '"></span></h4>
-                        </div>
-                        <div class="list-group-item">
-                            <h3>Description:</h3> <h4>Do the dishes for everyone</h4>
-                           <p class="list-group-item-text"><span id="displayDescription' + count + '"></span></p>
-                        </div>
-                    </div>
-                <div class="panel-footer">
-                <small></small>
-                    </div>
-                </div>
-        </div>
-    -->
-</html>
+            </div>
+            {{/each}}
+   </div>

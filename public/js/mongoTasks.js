@@ -17,7 +17,7 @@ var TaskSchema = mongoose.Schema({
 	},
 
 	userSelected: {
-		type: Boolean
+		type: String
 	}
 });
 

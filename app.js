@@ -18,6 +18,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // Include MongoDB stuff 
 var User = require('./public/js/mongoUser.js');
+var currentUser;
 
 //var fs = require('fs');
 //var jsonfile = require('jsonfile') // to read and write JSON more easily
@@ -117,7 +118,7 @@ passport.use(new LocalStrategy(
   		if(!user) {
   			return done(null, false, {message:'Username does not exist!'});
   		}
-
+      
   		User.comparePassword(password, user.password, function(err, isMatch) {
   			if(err) throw err;
   			if(isMatch) {
@@ -159,15 +160,34 @@ app.get('/other', other.viewOther);
 app.get('/register', registerFile.viewRegister);
 // pass in other variables to use the functions from it!
 app.post('/register', expressValidator2, flash2, userController.postIt);
-app.post('/tasks', tasks.updateTasks)
+app.post('/tasks', tasks.updateTasks);
+app.post('/tasks/update', tasks.editTasks);
+app.post('/tasks/remove', tasks.removeTasks);
+app.post('/tasks/select', tasks.selectUser);
+app.post('/group', group.updateGroup);
+app.post('/group/delete', group.deleteGroup);
 
-app.post('/', 
-	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
-	function(req,res) {
-   // req.flash('success_msg', 'You have logged in successfully!');
-		res.redirect('/index');
+// app.post('/', 
+// 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true})); 
+	// function(req,res) {
+ //   // req.flash('success_msg', 'You have logged in successfully!');
+	// 	res.redirect('/index', {
+ //      username: currentUser
+ //    });
 
-	});
+	// });
+
+  app.post('/', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        currentUser = user.username;
+        return res.redirect('/index/?username=' + user.username);
+      });
+    })(req, res, next);
+  });
 
 
 
