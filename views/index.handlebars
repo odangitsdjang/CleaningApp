@@ -1,15 +1,14 @@
 ﻿
-   <h2>Current <a href="/tasks">tasks:</a>{{count}}</h2><br><hr><hr>
+   <h2>Current <a href="/tasks">tasks:</a>{{count}}</h2><br>
    <div id="myTasks">
         <div class="jumbotron">
             <div class="panel-heading clearfix">
-                <h3 class="panel-title pull-left">
                     <span style="clear:both">
                     {{#each username}}
-                        <h2 style="float:left" id="currUser">{{this.name}}</h2><h2 style="float:right">'s Tasks</h2>
+                        <h2 id="currUser">{{this.name}}'s Tasks</h2>
                     {{/each}}
                     </span>
-                </h3>
+
             </div>
         </div>
             {{#each usersTasks}}
@@ -41,15 +40,13 @@
             </div>
             {{/each}}
     </div> <!-- end mytasks -->
-    <br><hr><hr><br>
+
    <div id="userTasks">
     <div class="jumbotron">
             <div class="panel-heading clearfix">
-                <h3 class="panel-title pull-left">
                     <span id="">
                         <h2>Other Tasks</h2>
                     </span>
-                </h3>
             </div>
         </div>
             {{#each otherTasks}}
