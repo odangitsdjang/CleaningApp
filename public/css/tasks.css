@@ -8,6 +8,12 @@
 }*/
 
 /* Dropdown Button */
+
+.jumbotron h1{
+    display: center;
+    color: red;
+}
+
 .dropbtn {
     background-color: #4CAF50;
     color: white;

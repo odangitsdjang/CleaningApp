@@ -107,7 +107,7 @@ exports.removeTasks = function(req,res){
         var taskName = req.body.taskID || req.query.taskID;
         //console.dir(taskName);
 
-        collection.remove({"name": taskName});
+        collection.remove({ $or: [{"name": taskName}, {"name": ''}] });
 
         db.close()
         // Group.removeMember(memberName, function(err,group){
