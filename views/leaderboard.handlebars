@@ -1,18 +1,18 @@
 ﻿	<h1>LEADERBOARD</h1>
     <div class="jumbotron">
-        <h2>Current User number: {{dataJson.UserCount}} </h2>
-        {{#each dataJson.Currency}}
+        <h2>Current User number: {{count}}</h2>
+    </div>
+        {{#each leaders}}
         <div class="tasklist">
             <div class="panel panel-default">
                 <div class="panel-heading clearfix">
-                    <h3 class="panel-title pull-left"><span id=""><h2> {{this.UserName }}</h2></span></h3>
-                    <!-- TODO EDIT LINK-->
+                    <h3 class="panel-title pull-left"><span id=""><h2>{{this.name}}</h2></span></h3>
+                    
                 </div>
                 <div class="list-group">
                     <div class="list-group-item">
-                        <p class="list-group-item-text"> </p>
-                        <!-- clean up later...  also hyperlink somewhere else later-->
-                        <h3>Reward Currency:</h3> <h4>$ {{this.UserCurrency}}</h4>
+                        <p class="list-group-item-text"> </p>                        
+                        <h3>Reward Currency:</h3> <h4>${{this.reward}}</h4>
                         <h4 class="list-group-item-heading"><span id=""></span></h4>
                     </div>
                     <div class="list-group-item">
@@ -24,14 +24,26 @@
                     <small></small>
                 </div>
             </div>
-        </div>
+        </div>        
         {{/each}}
-    </div>
-<!--
-    <script>
-        //console.log(document.getElementById("index" + String(0)).innerHTML)
-    for(i = 0; i < {{dataJson.Currency.length}};i++)
-        document.getElementById("index" + String(i)).innerHTML = Number(document.getElementById("index" + String(i)).innerHTML) + 1;
-    </script>
 
--->
+
+        <script>
+            Handlebars.registerHelper("inc", function(value, options)
+            {
+                return parseInt(value) + 1;
+            });
+
+            Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+        
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});
+        </script>

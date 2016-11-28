@@ -168,6 +168,7 @@ app.post('/tasks/remove', tasks.removeTasks);
 app.post('/tasks/select', tasks.selectUser);
 app.post('/group', group.updateGroup);
 app.post('/group/delete', group.deleteGroup);
+app.post('/index/complete', index.completeTask);
 
 // app.post('/', 
 // 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true})); 

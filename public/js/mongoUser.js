@@ -53,9 +53,6 @@ var UserSchema = mongoose.Schema({
 	},
 	name: {
 		type: String
-	},
-	reward: {
-		type: Number
 	}
 
 

@@ -60,7 +60,8 @@ exports.updateGroup = function(req,res) {
                 if(name == usersList[i].username && email == usersList[i].email){                    
                     var newGroup = new Group({
                         name: name,
-                        email: email
+                        email: email,
+                        reward: 0
                 });
 
                 Group.createGroup(newGroup, function(err,group) {

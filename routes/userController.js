@@ -31,8 +31,7 @@ exports.postIt = function(req,res){
 			name:name,
 			email:email,
 			username: username,
-			password: password,
-			reward: 0
+			password: password
 		});
 		User.createUser(newUser, function(err,user) {
 			if(err) throw err;

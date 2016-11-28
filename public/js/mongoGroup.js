@@ -9,6 +9,10 @@ var GroupSchema = mongoose.Schema({
 
 	email: {
 		type: String
+	},
+
+	reward: {
+		type: Number
 	}
 });
 

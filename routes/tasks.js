@@ -60,7 +60,7 @@ exports.updateTasks = function(req,res) {
 
 	Task.createTask(newTask, function(err,task) {
 			if(err) throw err;
-			console.log(task);
+			//console.log(task);
 
 		});
 
@@ -83,7 +83,7 @@ exports.editTasks = function(req,res) {
         var taskName = req.body.taskName || req.query.taskName; 
         var taskReward = req.body.taskReward || req.query.taskReward;
         var taskDescription = req.body.taskDescription || req.query.taskDescription;
-        console.dir(taskName);
+        //console.dir(taskName);
 
         //collection.remove({"name": memberName});
         collection.update({'name': oldName},{$set:{'name':taskName}});
@@ -105,7 +105,7 @@ exports.removeTasks = function(req,res){
         var collection = db.collection('tasks');
 
         var taskName = req.body.taskID || req.query.taskID;
-        console.dir(taskName);
+        //console.dir(taskName);
 
         collection.remove({"name": taskName});
 
@@ -125,7 +125,7 @@ exports.selectUser = function(req,res){
 
         var selectedUser = req.body.selectedUser || req.query.selectedUser;
         var taskName = req.body.taskName || req.query.taskName;
-        console.dir(selectedUser);
+       // console.dir(selectedUser);
 
         collection.update({'name': taskName},{$set:{'userSelected': selectedUser}});
 

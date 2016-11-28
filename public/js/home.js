@@ -3,14 +3,14 @@
 
 
 
-var count = (localStorage.getItem('currTaskCount')===null)?0:(localStorage.getItem('currTaskCount'));
-var currUser = (localStorage.getItem("currentUser"));
-var hasTasks = false;
+// var count = (localStorage.getItem('currTaskCount')===null)?0:(localStorage.getItem('currTaskCount'));
+// var currUser = (localStorage.getItem("currentUser"));
+// var hasTasks = false;
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 	
-	//initializePage();
+	initializePage();
 })
 
 
@@ -18,8 +18,33 @@ $(document).ready(function() {
  * Function that is called when the document is ready.
  */
 function initializePage() {
-	var newDivHead1 = document.createElement("div");
-	var newDivHead2 = document.createElement("div");
+
+
+	window.completeTask = function(elem){
+		// document.getElementById('taskshome'+elem.id[4]).style.display = 'none';
+		var reward = $('#displayReward'+elem.id[4]).text();
+		var taskName = $('#displayName'+elem.id[4]).text();
+		var name = $('#currUser').text();
+
+      		// console.log(reward);
+      		// console.log(taskName);
+      		// console.log(name);
+      		$.ajax({
+	         method: "POST",
+	         url: "/index/complete",
+	         data: {"reward": reward, "taskName": taskName, "name": name},
+	         success: function(result) {
+	            location.reload();	     
+	         }
+	      	})
+
+	      	history.go(0);
+	      	history.go(0);
+	}
+
+
+	// var newDivHead1 = document.createElement("div");
+	// var newDivHead2 = document.createElement("div");
 	//display users tasks
 		//user can choose options to not take the task or complete it
 	// newDivHead1.innerHTML = 
@@ -34,7 +59,7 @@ function initializePage() {
 
 	// document.getElementById("myTasks").appendChild(newDivHead1);
 
-	if(count != 0){
+	// if(count != 0){
 	// for(var i = 0; i < count; i++){
 	// 	if(localStorage.getItem("selectedUser"+i) == currUser){
 	// 		hasTasks = true;
@@ -86,13 +111,13 @@ function initializePage() {
 
 	// 		}
 	// 	}
-		if(!hasTasks){
-			var newDiv = document.createElement("div"); 
-			newDiv.innerHTML = '<p>Go to Tasks page to assign yourself tasks!</p>';
-			var currentDiv = document.getElementById("myTasks"); 	  
-	  		currentDiv.appendChild(newDiv);
-		}
-	}
+	// 	if(!hasTasks){
+	// 		var newDiv = document.createElement("div"); 
+	// 		newDiv.innerHTML = '<p>Go to Tasks page to assign yourself tasks!</p>';
+	// 		var currentDiv = document.getElementById("myTasks"); 	  
+	//   		currentDiv.appendChild(newDiv);
+	// 	}
+	// }
 
 	//display the rest of the tasks
 		//displays as normal
@@ -151,9 +176,7 @@ function initializePage() {
 	// 	}
 	// }
 
-	window.completeTask = function(elem){
-		document.getElementById('taskshome'+elem.id[4]).style.display = 'none';
-	}
+	
 
 }
 
