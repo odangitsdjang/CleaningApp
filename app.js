@@ -26,6 +26,7 @@ var currentUser;
 
 // All the pages for our project!
 var login = require('./routes/login');
+var login2= require('./routes/login2');
 var index = require('./routes/index');
 var tasks = require('./routes/tasks');
 var group = require('./routes/group');
@@ -66,7 +67,7 @@ var flash2 = flash();
 /* global variable dataJson (can be used in other files)
 app.locals.dataJson = require('/data.json'); */
 app.use(function(req,res,next) {
-  res.locals.tester = 0;
+  
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -152,6 +153,7 @@ passport.deserializeUser(function(id, done) {
 
 // Add routes here
 app.get('/', login.view);
+app.get('/login2', login2.viewLogin2);
 app.get('/index', index.viewIndex);
 app.get('/tasks', tasks.viewTasks);
 app.get('/group', group.viewGroup);

@@ -19,7 +19,7 @@ exports.viewIndex = function(req, res){
     	log.insert({"name": req.query.username});
     	
     }
-// console.dir("fuck everythong");
+
     var collection = db.collection('tasks');
     var logged = db.collection('loggedIn');
     
