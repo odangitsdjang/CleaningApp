@@ -1,13 +1,15 @@
 ﻿
-   <h2>Total <a href="/tasks">Tasks:</a> {{count}}</h2><br>
+   <h2 class="totalTasks">Total <a href="/tasks">Tasks:</a> {{count}}</h2><br>
    <div id="myTasks">
         <div class="jumbotron">
             <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">
                     <span style="clear:both">
                     {{#each username}}
-                        <h2 id="currUser">{{this.name}}'s Tasks</h2>
+                        <h2 style="float:left" id="currUser">{{this.name}}</h2><h2 style="float:right">'s Tasks</h2>
                     {{/each}}
                     </span>
+                </h3>
 
             </div>
         </div>

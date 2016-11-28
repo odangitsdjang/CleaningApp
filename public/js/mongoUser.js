@@ -11,12 +11,12 @@ var uristring =
 // mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj
 
 // heroku mode  - week 8 key
-var uristring = 'mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj';
+//var uristring = 'mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj';
 // use the below for cse170cleaningapp.herokuapp.com   if the above does not work 
 //var uristring =  'mongodb://heroku_58dmjsxw:8at3n9i449obhcfjb3d9m2jlfd@ds163397.mlab.com:63397/heroku_58dmjsxw';
 
 // localhost mode 
-//var uristring= 'mongodb://localhost/CleaningApp';
+var uristring= 'mongodb://localhost/CleaningApp';
 
 
     // The http server will listen to an appropriate port, or default to
