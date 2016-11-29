@@ -16,30 +16,6 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 
-// Include MongoDB stuff 
-var User = require('./public/js/mongoUser.js');
-var currentUser;
-
-//var fs = require('fs');
-//var jsonfile = require('jsonfile') // to read and write JSON more easily
-//var requirejs = require('requirejs');
-
-// All the pages for our project!
-var login = require('./routes/login');
-var login2= require('./routes/login2');
-var index = require('./routes/index');
-var tasks = require('./routes/tasks');
-var group = require('./routes/group');
-var leaderboard = require('./routes/leaderboard');
-var other = require('./routes/other');
-var registerFile = require('./routes/register');
-var userController = require('./routes/userController');
-
-
-
-// Example route
-// var user = require('./routes/user');
-
 var app = express();
 
 // all environments
@@ -84,6 +60,32 @@ app.use(passport.session());
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Include MongoDB stuff 
+var User = require('./public/js/mongoUser.js');
+var currentUser;
+
+//var fs = require('fs');
+//var jsonfile = require('jsonfile') // to read and write JSON more easily
+//var requirejs = require('requirejs');
+
+// All the pages for our project!
+var login = require('./routes/login');
+var login2= require('./routes/login2');
+var index = require('./routes/index');
+var tasks = require('./routes/tasks');
+var group = require('./routes/group');
+var leaderboard = require('./routes/leaderboard');
+var other = require('./routes/other');
+var registerFile = require('./routes/register');
+var userController = require('./routes/userController');
+
+
+
+// Example route
+// var user = require('./routes/user');
+
+
 
 
 
@@ -183,29 +185,29 @@ function ensureAuthenticated(req,res,next) {
 
 
 
- app.post('/', 
- 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
-	 function(req,res) {
-    // req.flash('success_msg', 'You have logged in successfully!');
-	 	res.redirect('/index', {
-       username: currentUser
-     });
-	 });
+ // app.post('/', 
+ // 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
+	//  function(req,res) {
+ //    // req.flash('success_msg', 'You have logged in successfully!');
+	//  	res.redirect('/index', {
+ //       username: currentUser
+ //     });
+	//  });
 
 
-  // app.post('/', function(req, res, next) {
-  //   passport.authenticate('local', function(err, user, info) {
-  //     if (err) { return next(err); }
-  //     if (!user) { 
-  //       return res.redirect('/'); 
-  //     }
-  //     req.logIn(user, function(err) {
-  //       if (err) { return next(err); }
-  //       currentUser = user.username;
-  //       return res.redirect('/index/?username=' + user.username);
-  //     });
-  //   })(req, res, next);
-  // });
+  app.post('/', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { 
+        return res.redirect('/'); 
+      }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        currentUser = user.username;
+        return res.redirect('/index/?username=' + user.username);
+      });
+    })(req, res, next);
+  });
 
 
 
