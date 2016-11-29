@@ -96,6 +96,8 @@ exports.editTasks = function(req,res) {
         //     console.log(group);
         // })
     })
+
+    res.redirect(req.get('referer'));
 }
 
 exports.removeTasks = function(req,res){
@@ -115,6 +117,8 @@ exports.removeTasks = function(req,res){
         //     console.log(group);
         // })
     })
+
+    res.redirect(req.get('referer'));
 }
 
 exports.selectUser = function(req,res){

@@ -105,6 +105,7 @@ exports.completeTask = function(req,res){
         //     console.log(group);
         // })
     })
+    res.redirect(req.get('referer'));
 }
 
 

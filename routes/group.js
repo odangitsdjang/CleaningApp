@@ -88,6 +88,7 @@ exports.updateGroup = function(req,res) {
         // res.send(500,'groupAlert');
     }
 
+    res.redirect(req.get('referer'));
 	// res.redirect('/index');
 }
 
@@ -109,6 +110,8 @@ exports.deleteGroup = function(req, res, next) {
         //     console.log(group);
         // })
     })
+
+    res.redirect(req.get('referer'));
    
 }
 
