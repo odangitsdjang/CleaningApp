@@ -28,7 +28,8 @@
     "mongoose": "^4.7.0",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "update-mongo": "0.0.4"
   },
   "engines": {
     "node": "0.10.x"
