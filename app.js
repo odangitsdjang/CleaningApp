@@ -183,29 +183,29 @@ function ensureAuthenticated(req,res,next) {
 
 
 
- // app.post('/', 
- // 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
-	//  function(req,res) {
- //    // req.flash('success_msg', 'You have logged in successfully!');
-	//  	res.redirect('/index', {
- //       username: currentUser
- //     });
-	//  });
+ app.post('/', 
+ 	passport.authenticate('local', { successRedirect: '/index', failureRedirect:'/', failureFlash:true}), 
+	 function(req,res) {
+    // req.flash('success_msg', 'You have logged in successfully!');
+	 	res.redirect('/index', {
+       username: currentUser
+     });
+	 });
 
 
-  app.post('/', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err) { return next(err); }
-      if (!user) { 
-        return res.redirect('/'); 
-      }
-      req.logIn(user, function(err) {
-        if (err) { return next(err); }
-        currentUser = user.username;
-        return res.redirect('/index/?username=' + user.username);
-      });
-    })(req, res, next);
-  });
+  // app.post('/', function(req, res, next) {
+  //   passport.authenticate('local', function(err, user, info) {
+  //     if (err) { return next(err); }
+  //     if (!user) { 
+  //       return res.redirect('/'); 
+  //     }
+  //     req.logIn(user, function(err) {
+  //       if (err) { return next(err); }
+  //       currentUser = user.username;
+  //       return res.redirect('/index/?username=' + user.username);
+  //     });
+  //   })(req, res, next);
+  // });
 
 
 
