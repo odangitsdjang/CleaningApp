@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient, format = require('util').forma
 var groupList, groupCount;
 
 exports.viewGroup = function(req, res){
-  MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+  MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('groups');
@@ -39,7 +39,7 @@ exports.updateGroup = function(req,res) {
     var usersList;
     var found = false;
 
-    MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+    MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('users');
@@ -94,7 +94,7 @@ exports.updateGroup = function(req,res) {
 
 exports.deleteGroup = function(req, res, next) {
 
-    MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+    MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('groups');

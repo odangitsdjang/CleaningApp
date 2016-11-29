@@ -4,7 +4,7 @@ var groupList, userList, userCount, groupCount,  rewardArray = [];
 
 exports.viewLeaderboard = function (req, res) {
    
-    MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+    MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var groups = db.collection('groups');

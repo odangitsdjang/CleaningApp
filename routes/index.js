@@ -7,7 +7,7 @@ var username, userReward, name;
 exports.viewIndex = function(req, res){
 	username = req.query.username;
 
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
     if(err) throw err;
     //console.dir(req.query.username)
 
@@ -58,7 +58,7 @@ exports.viewIndex = function(req, res){
 
 
 exports.completeTask = function(req,res){
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('tasks');
@@ -90,7 +90,7 @@ exports.completeTask = function(req,res){
         // })
     })
 //console.dir("1 " + userReward);
-    MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+    MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 //console.dir("whaddaheck" + userReward)
 

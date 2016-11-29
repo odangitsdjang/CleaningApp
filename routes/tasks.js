@@ -12,7 +12,7 @@ var dJ = require('../data1.json');
 var tasksCount, taskList, groupList;
 
 exports.viewTasks = function(req, res){
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
     if(err) throw err;
 
     var collection = db.collection('tasks');
@@ -71,7 +71,7 @@ exports.updateTasks = function(req,res) {
 
 
 exports.editTasks = function(req,res) {
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('tasks');
@@ -101,7 +101,7 @@ exports.editTasks = function(req,res) {
 }
 
 exports.removeTasks = function(req,res){
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('tasks');
@@ -122,7 +122,7 @@ exports.removeTasks = function(req,res){
 }
 
 exports.selectUser = function(req,res){
-	MongoClient.connect('mongodb://localhost/CleaningApp', function(err, db) {
+	MongoClient.connect('mongodb://heroku_2s7m53vj:lqb9p32ov0u6akts4hoekc7h5l@ds153677.mlab.com:53677/heroku_2s7m53vj', function(err, db) {
         if(err) throw err;
 
         var collection = db.collection('tasks');
